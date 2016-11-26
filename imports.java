@@ -29,7 +29,8 @@ class Setting
 {
     static Optional<Setting> lookupSettingByName(final String name)
     {
-        return Optional.ofNullable(System.getProperty(name)).map(Setting::new);
+        return Optional.ofNullable(System.getProperty(name))
+                       .map(Setting::new);
     }
 
     private final String value;
@@ -125,4 +126,36 @@ List<Payment> paymentsByValue =
 	Stream.of(900, 700, 500, 300, 100, 0).map(Payment::new).collect(toList());
 
 String bookingReference = "LCY to ANR"
+
+List<String> toc = new ArrayList<>(List.of(
+    "  Introduction",
+    "  Collection Factory Methods",
+    "    motivation",
+    "    of()",
+    "    ofEntries()",
+    "  Streams",
+    "    ofNullable",
+    "    takeWhile/dropWhile",
+    "    iterate",
+    "  Optional",
+    "    stream",
+    "    ifPresentOrElse",
+    "    or",
+    "  Conclusions"));
+
+int tocIndex = 0;
+
+void printToc()
+{
+    toc.forEach(System.out::println);
+}
+
+void next()
+{
+    String current = toc.get(tocIndex);
+    current = "✓" + current.substring(1);
+    toc.set(tocIndex, current);
+    tocIndex++;
+    printToc();
+}
 
