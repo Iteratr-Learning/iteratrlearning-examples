@@ -159,3 +159,14 @@ void next()
     printToc();
 }
 
+String takeWhile = "paymentsByValue.stream().filter(transaction -> transaction.getValue() >= 500).collect(toList());";
+
+String iterate = "Stream.iterate(1, n -> n+ 1).filter(n -> n < 5).forEach(System.out::println)";
+
+String optionalStream = "Setting.lookupSettingByName";
+
+String optionalPresentOrElse = "Booking.lookupBooking(), Ui.displayCheckIn(booking.get()), Ui.displayMissingBookingPage()"
+
+String optionalOr = "findClient, lookupCompany"
+
+

@@ -1,3 +1,4 @@
+package com.iteratrlearning.blog_examples.collection_factory_methods;
 
 import java.util.*;
 import static java.util.Map.*;
