@@ -177,6 +177,9 @@ List<String> toc = new ArrayList<>(List.of(
     "    ofNullable (properties)",
     "    takeWhile/dropWhile (paymentsByValue)",
     "    iterate (termination)",
+    "  Collectors",
+    "    filtering",
+    "    flatMapping"
     "  Optional",
     "    stream (Setting)",
     "    ifPresentOrElse (Flight Bookings)",
