@@ -1,6 +1,7 @@
 package com.iteratrlearning.blog_examples.collection_factory_methods;
 
 import java.util.*;
+
 import static java.util.Map.*;
 
 public class CollectionFactoryMethods
@@ -30,7 +31,6 @@ public class CollectionFactoryMethods
 
         Map<String, Integer> cities = Map.ofEntries(
             entry("Brussels", 1139000), entry("Cardiff", 341000));
-
     }
 }
 

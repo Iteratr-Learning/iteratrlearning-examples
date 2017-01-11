@@ -1,6 +1,9 @@
 import java.util.stream.*;
 import static java.util.Map.*;
 import static java.util.stream.Collectors.*;
+import java.util.*;
+
+import static java.util.stream.Collectors.groupingBy;
 
 class Payment
 {
@@ -106,6 +109,43 @@ class Client
     }
 }
 
+public class Expense {
+    private final long amount;
+    private final int year;
+    private final List<Tag> tags;
+
+    public Expense(long amount, int year, List<Tag> tags) {
+        this.amount = amount;
+        this.year = year;
+        this.tags = tags;
+    }
+
+    public long getAmount() {
+        return amount;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    public List<Tag> getTags() {
+        return tags;
+    }
+
+    @Override
+    public String toString() {
+        return "Expense{" +
+                "amount=" + amount +
+                ", year=" + year +
+                ", tags=" + tags +
+                '}';
+    }
+}
+
+public enum Tag {
+    FOOD, ENTERTAINMENT, TRAVEL, UTILITY
+}
+
 Optional<Client> findClient(final String clientId)
 {
     return "aClient".equals(clientId)
@@ -134,13 +174,13 @@ List<String> toc = new ArrayList<>(List.of(
     "    of()",
     "    ofEntries()",
     "  Streams",
-    "    ofNullable",
-    "    takeWhile/dropWhile",
-    "    iterate",
+    "    ofNullable (properties)",
+    "    takeWhile/dropWhile (paymentsByValue)",
+    "    iterate (termination)",
     "  Optional",
-    "    stream",
-    "    ifPresentOrElse",
-    "    or",
+    "    stream (Setting)",
+    "    ifPresentOrElse (Flight Bookings)",
+    "    or (Client addresses)",
     "  Conclusions"));
 
 int tocIndex = 0;
@@ -169,4 +209,8 @@ String optionalPresentOrElse = "Booking.lookupBooking(), Ui.displayCheckIn(booki
 
 String optionalOr = "findClient, lookupCompany"
 
+List<Expense> purchases = List.of(
+            new Expense(500, 2016, List.of(Tag.FOOD, Tag.ENTERTAINMENT)),
+            new Expense(1_500, 2016, List.of(Tag.UTILITY)),
+            new Expense(700, 2015, List.of(Tag.TRAVEL, Tag.ENTERTAINMENT)));
 
