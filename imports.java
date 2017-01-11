@@ -179,7 +179,7 @@ List<String> toc = new ArrayList<>(List.of(
     "    iterate (termination)",
     "  Collectors",
     "    filtering",
-    "    flatMapping"
+    "    flatMapping",
     "  Optional",
     "    stream (Setting)",
     "    ifPresentOrElse (Flight Bookings)",
