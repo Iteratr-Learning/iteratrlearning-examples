@@ -7,17 +7,24 @@ public class ApplicationCleaner
         cleanupApplication("chrome");
     }
 
-    private static void cleanupApplication(final String applcationName)
+    private static void cleanupApplication(final String applicationName)
     {
         ProcessHandle.allProcesses()
-                     .filter(process -> isApplication(applcationName, process))
+                     .filter(process -> isApplication(applicationName, process))
                      .forEach(process ->
                      {
-                         System.out.println("Killing ... " + process.info().command().get());
-                         if (process.destroyForcibly())
+                         process.info().command().ifPresent(command ->
                          {
-                             System.out.println("Success!");
-                         }
+                             System.out.println("Killing ... " + command);
+                             if (process.destroyForcibly())
+                             {
+                                 System.out.println("Success!");
+                             }
+                             else
+                             {
+                                 System.out.println("Failed");
+                             }
+                         });
                      });
     }
 
