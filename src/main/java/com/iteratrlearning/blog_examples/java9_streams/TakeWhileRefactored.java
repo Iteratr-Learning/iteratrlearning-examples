@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class TakeWhile
+public class TakeWhileRefactored
 {
     public static void main(String[] args)
     {
-        // 1. show its inefficient for large numbers of payments
+        // 1. show it doesn't terminate
         // 2. refactor to use takeWhile
 
         List<Payment> paymentsByValue = new ArrayList<>();
@@ -22,7 +22,7 @@ public class TakeWhile
 
         final List<Payment> expensivePayments = paymentsByValue
             .stream()
-            .filter(transaction -> transaction.getValue() >= 5)
+            .takeWhile(transaction -> transaction.getValue() >= 5)
             .collect(Collectors.toList());
 
         System.out.println(expensivePayments);

@@ -2,7 +2,7 @@ package com.iteratrlearning.blog_examples.java9_streams;
 
 import java.util.stream.Stream;
 
-public class OfNullable
+public class OfNullableRefactored
 {
     public static void main(String[] args)
     {
@@ -11,17 +11,7 @@ public class OfNullable
 
         final String configurationDirectory =
             Stream.of("app.config", "app.home", "user.home")
-                  .flatMap(key -> {
-                      final String property = System.getProperty(key);
-                      if (property == null)
-                      {
-                          return Stream.empty();
-                      }
-                      else
-                      {
-                          return Stream.of(property);
-                      }
-                  })
+                  .flatMap(key -> Stream.ofNullable(System.getProperty(key)))
                   .findFirst()
                   .orElseThrow(IllegalStateException::new);
 
