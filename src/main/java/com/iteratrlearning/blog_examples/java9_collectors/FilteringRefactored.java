@@ -3,9 +3,12 @@ package com.iteratrlearning.blog_examples.java9_collectors;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.stream.Collectors.filtering;
 import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.toList;
 
-public class Filtering {
+public class FilteringRefactored
+{
 
     public static void main(String[] args) {
 
@@ -20,8 +23,9 @@ public class Filtering {
 
         Map<Integer, List<Expense>> yearToExpenses
                 = purchases.stream()
-                .filter(expense -> expense.getAmount() > 1_000)
-                .collect(groupingBy(Expense::getYear));
+                .collect(
+                    groupingBy(Expense::getYear,
+                        filtering(expense -> expense.getAmount() > 1_000, toList())));
 
         System.out.println(yearToExpenses);
 

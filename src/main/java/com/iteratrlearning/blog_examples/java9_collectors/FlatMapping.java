@@ -2,15 +2,15 @@ package com.iteratrlearning.blog_examples.java9_collectors;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
-import static java.util.stream.Collectors.groupingBy;
+import static java.util.stream.Collectors.*;
 
-public class Filtering {
+public class FlatMapping
+{
 
     public static void main(String[] args) {
-
-        // 1. show that 2015 is missing from the results map
-        // 2. refactor to use filtering collector
+        // Problem: Set<List<Tag>>
 
         List<Expense> purchases
                 = List.of(
@@ -18,12 +18,11 @@ public class Filtering {
                         new Expense(1_500, 2016, List.of(Tag.UTILITY)),
                         new Expense(700, 2015, List.of(Tag.TRAVEL, Tag.ENTERTAINMENT)));
 
-        Map<Integer, List<Expense>> yearToExpenses
-                = purchases.stream()
-                .filter(expense -> expense.getAmount() > 1_000)
-                .collect(groupingBy(Expense::getYear));
+        Map<Integer, Set<List<Tag>>> tagsByYear = purchases.stream()
+            .collect(groupingBy(Expense::getYear,
+                mapping(Expense::getTags, toSet())));
 
-        System.out.println(yearToExpenses);
+        System.out.println(tagsByYear);
 
     }
 }
